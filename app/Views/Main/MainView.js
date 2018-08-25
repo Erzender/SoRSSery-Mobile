@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import colors from '../../Resources/colors'
+import Flux from '../Flux'
 
-type Props = {};
-export default class MainView extends Component<Props> {
+export default class MainView extends Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.props.nav[0] === 'flux' && <Flux />}
       </View>
     );
   }
@@ -15,8 +16,6 @@ export default class MainView extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1
   }
 });

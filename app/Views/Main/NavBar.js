@@ -4,8 +4,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import colors from '../../Resources/colors'
 
-type Props = {};
-export default class NavBar extends Component<Props> {
+export default class NavBar extends Component {
   render() {
     return (
       <View style={styles.container} elevation={5}>

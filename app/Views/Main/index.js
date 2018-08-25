@@ -5,13 +5,15 @@ import colors from '../../Resources/colors'
 import NavBar from './NavBar'
 import MainView from './MainView'
 
-type Props = {};
-export default class Main extends Component<Props> {
+export default class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      nav: ["main"]
+      nav: ["flux"]
     }
+  }
+  shouldComponentUpdate(nextProps) {
+      return false;
   }
   render() {
     return (
@@ -21,7 +23,7 @@ export default class Main extends Component<Props> {
           barStyle="light-content"
         />
         <NavBar />
-        <MainView />
+        <MainView nav={this.state.nav} />
       </View>
     );
   }
