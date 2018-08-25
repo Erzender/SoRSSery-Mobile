@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import {Image, FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import colors from '../../Resources/colors'
@@ -25,6 +25,10 @@ export default class Menu extends Component {
             <Text style={[styles.text, styles.header]}>Topics</Text>
           }
         />
+        <View style={styles.version}>
+          <Image source={require('../../Resources/sorssery.png')} style={styles.logo} />
+          <Text style={styles.text}>SoRSSery 1.0</Text>
+        </View>
       </View>
     );
   }
@@ -79,5 +83,17 @@ const styles = StyleSheet.create({
   last: {
     fontFamily: "OpenSans-Light",
     fontSize: 14
+  },
+  logo: {
+    maxHeight: 50,
+    maxWidth: 50,
+    margin: 5
+  },
+  version: {
+    flex: 1,
+    maxHeight: 60,
+    minHeight: 60,
+    flexDirection: "row",
+    alignItems: "center"
   }
 });
