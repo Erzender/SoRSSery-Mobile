@@ -5,25 +5,33 @@ import colors from '../../Resources/colors'
 import NavBar from './NavBar'
 import Flux from '../Flux'
 import Menu from './Menu'
+import Settings from '../Settings'
 
 export default class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      margin: new Animated.Value(0),
+      margin: new Animated.Value(-200),
       menu: false,
+      settings: false
     }
-    this.toggleMenu.bind(this)
   }
   toggleMenu(){
     Animated.timing(
       this.state.margin,
       {
-        toValue: this.state.menu?0:4,
+        toValue: this.state.menu?-200:0,
         duration: 200
       }
     ).start();
     this.setState({menu: !this.state.menu})
+  }
+  toggleSettings(){
+    this.setState({settings: !this.state.settings})
+    this.toggleMenu()
+  }
+  closeSettings(){
+    this.setState({settings: false})
   }
   render() {
     return (
@@ -32,11 +40,12 @@ export default class Main extends Component {
           backgroundColor={colors.brand_darkened}
           barStyle="light-content"
           />
-        <NavBar toggleMenu={this.toggleMenu.bind(this)} />
+        <NavBar toggleMenu={this.state.settings?this.closeSettings.bind(this):this.toggleMenu.bind(this)} settings={this.state.settings} />
+        <Flux />
+        {this.state.settings && <Settings />}
         <View style={styles.menuScreen}>
-          <Menu style={{flex: this.state.margin}} />
-          <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} elevation={this.state.menu?5:0} />
-          <Flux />
+          <Animated.View style={[styles.menu, {marginLeft: this.state.margin}]} elevation={4}><Menu openSettings={this.toggleSettings.bind(this)} /></Animated.View>
+          <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} elevation={this.state.menu?4:0} />
         </View>
       </View>
     );
@@ -51,5 +60,14 @@ const styles = StyleSheet.create({
   menuScreen: {
     flex: 1,
     flexDirection: "row",
+    position: "absolute",
+    top: 50,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
+  menu: {
+    width: 200,
+    backgroundColor: colors.main_2
+  }
 });

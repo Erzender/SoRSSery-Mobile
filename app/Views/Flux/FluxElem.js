@@ -23,8 +23,8 @@ export default class FluxElem extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    minHeight: 80,
-    maxHeight: 80,
+    minHeight: 100,
+    maxHeight: 100,
     backgroundColor: colors.main_2,
     borderRadius: 5,
     marginBottom: 1,
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   image: {
-    maxWidth: 80,
-    maxHeight: 50,
+    maxWidth: 100,
+    maxHeight: 60,
     flex: 1,
     margin: 5
   }

@@ -9,9 +9,9 @@ export default class NavBar extends Component {
     return (
       <View style={styles.container} elevation={5}>
         <TouchableOpacity onPress={this.props.toggleMenu} style={styles.side}>
-          <FontAwesome5 name={'bars'} solid style={styles.text} />
+          <FontAwesome5 name={this.props.settings?'chevron-left':'bars'} solid style={styles.text} />
         </TouchableOpacity>
-        <View style={styles.middle}><Text style={styles.text}>SoRSSery</Text></View>
+        <View style={styles.middle}><Text style={styles.text}>{this.props.settings?'Settings':'SoRSSery'}</Text></View>
         <View style={styles.side}></View>
       </View>
     );

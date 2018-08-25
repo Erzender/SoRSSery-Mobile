@@ -19,7 +19,7 @@ export default class Flux extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} elevation={1}>
         <FlatList
           data={this.getOrderedFlux()}
           renderItem={({item}) => <FluxElem item={item} />}
@@ -34,11 +34,6 @@ export default class Flux extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     backgroundColor: colors.selected
   },
   list: {
