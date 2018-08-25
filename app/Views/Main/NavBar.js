@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import colors from '../../Resources/colors'
@@ -8,7 +8,9 @@ export default class NavBar extends Component {
   render() {
     return (
       <View style={styles.container} elevation={5}>
-        <View style={styles.side}><FontAwesome5 name={'bars'} solid style={styles.text} /></View>
+        <TouchableOpacity onPress={this.props.toggleMenu} style={styles.side}>
+          <FontAwesome5 name={'bars'} solid style={styles.text} />
+        </TouchableOpacity>
         <View style={styles.middle}><Text style={styles.text}>SoRSSery</Text></View>
         <View style={styles.side}></View>
       </View>
