@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.main_1,
-    fontFamily: "OpenSans-Regular",
+    fontFamily: "OpenSans-Bold",
     fontSize: 18
   }
 });

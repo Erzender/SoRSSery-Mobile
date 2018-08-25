@@ -15,10 +15,10 @@ export default class Menu extends Component {
         <FlatList
           data={this.props.topics}
           renderItem={({item}) =>
-            <View style={styles.topic}>
-              <Text style={styles.text}>{item.key}</Text>
+            <TouchableOpacity style={item.selected ? styles.topic_s : styles.topic} onPress={() => this.props.selectTopic(item.key)}>
+              <Text style={[styles.text, {fontFamily: item.selected?"OpenSans-Bold":"OpenSans-Regular"}]}>{item.key}</Text>
               <Text style={[styles.text, styles.last]}>{item.latest}</Text>
-            </View>
+            </TouchableOpacity>
           }
           style={styles.list}
           ListHeaderComponent={() =>
@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
     maxHeight: 60,
     minHeight: 60,
     borderRadius: 10,
+    padding: 10
+  },
+  topic_s: {
+    backgroundColor: colors.selected,
+    flex: 1,
+    maxHeight: 60,
+    minHeight: 60,
     padding: 10
   },
   last: {

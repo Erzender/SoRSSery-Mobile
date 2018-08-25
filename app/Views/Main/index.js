@@ -47,13 +47,17 @@ export default class Main extends Component {
   getTopics() {
     var topics = []
     for (topic in this.state.flux) {
-      topics.push({key: topic, latest: this.getOrderedFlux(topic)[0] ? moment(this.getOrderedFlux(topic)[0].date).fromNow():"none"})
+      topics.push({key: topic, selected: topic===this.state.selectedFlux, latest: this.getOrderedFlux(topic)[0] ? moment(this.getOrderedFlux(topic)[0].date).fromNow():"none"})
     }
     return topics
   }
   getOrderedFlux(topic) {
     var selectedTopic = topic || this.state.selectedFlux
     return (this.state.flux[selectedTopic].map((item, key) => ({...item, key: key + ""})).sort((a, b) => new Date(b.date) - new Date(a.date)))
+  }
+  selectFlux(flux) {
+    this.toggleMenu()
+    this.setState({selectedFlux: flux})
   }
   render() {
     return (
@@ -67,7 +71,7 @@ export default class Main extends Component {
         {this.state.settings && <Settings />}
         <View style={styles.menuScreen}>
           <Animated.View style={[styles.menu, {marginLeft: this.state.margin}]} elevation={4}>
-            <Menu openSettings={this.toggleSettings.bind(this)} topics={this.getTopics()} />
+            <Menu openSettings={this.toggleSettings.bind(this)} topics={this.getTopics()} selectTopic={this.selectFlux.bind(this)} />
           </Animated.View>
           <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} elevation={this.state.menu?4:0} />
         </View>
