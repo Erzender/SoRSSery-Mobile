@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, Animated, StyleSheet, Text, View} from 'react-native';
+import {FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import colors from '../../Resources/colors'
@@ -12,6 +12,19 @@ export default class Menu extends Component {
           <FontAwesome5 name={'cog'} solid style={styles.icon} />
           <Text style={styles.text}>Settings</Text>
         </TouchableOpacity>
+        <FlatList
+          data={this.props.topics}
+          renderItem={({item}) =>
+            <View style={styles.topic}>
+              <Text style={styles.text}>{item.key}</Text>
+              <Text style={[styles.text, styles.last]}>{item.latest}</Text>
+            </View>
+          }
+          style={styles.list}
+          ListHeaderComponent={() =>
+            <Text style={[styles.text, styles.header]}>Topics</Text>
+          }
+        />
       </View>
     );
   }
@@ -34,11 +47,30 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.main_1,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 18
   },
   icon: {
     color: colors.main_1,
     fontSize: 20,
     marginRight: 5
+  },
+  header: {
+    margin: 10,
+    marginTop: 20,
+    alignSelf: "center",
+    fontFamily: 'OpenSans-ExtraBold',
+  },
+  topic: {
+    backgroundColor: colors.unselected,
+    flex: 1,
+    maxHeight: 60,
+    minHeight: 60,
+    borderRadius: 10,
+    padding: 10
+  },
+  last: {
+    fontFamily: "OpenSans-Light",
+    fontSize: 14
   }
 });
