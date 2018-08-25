@@ -3,7 +3,7 @@ import {Animated, Dimensions, StyleSheet, Text, View, StatusBar} from 'react-nat
 
 import colors from '../../Resources/colors'
 import NavBar from './NavBar'
-import MainView from './MainView'
+import Flux from '../Flux'
 import Menu from './Menu'
 
 export default class Main extends Component {
@@ -12,7 +12,6 @@ export default class Main extends Component {
     this.state = {
       margin: new Animated.Value(0),
       menu: false,
-      nav: ["flux"]
     }
     this.toggleMenu.bind(this)
   }
@@ -37,7 +36,7 @@ export default class Main extends Component {
         <View style={styles.menuScreen}>
           <Menu style={{flex: this.state.margin}} />
           <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} elevation={this.state.menu?5:0} />
-          <MainView nav={this.state.nav} />
+          <Flux />
         </View>
       </View>
     );
