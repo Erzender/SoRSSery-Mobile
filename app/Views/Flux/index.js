@@ -8,7 +8,7 @@ import FluxHeader from './FluxHeader'
 export default class Flux extends Component {
   render() {
     return (
-      <View style={styles.container} elevation={1}>
+      <View style={styles.container}>
         <FlatList
           data={this.props.flux}
           renderItem={({item}) => <FluxElem item={item} />}

@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.selected,
+    backgroundColor: colors.unselected,
     minHeight: 40,
     maxHeight: 50,
     minHeight: 50,

@@ -12,7 +12,7 @@ export default class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      margin: new Animated.Value(-200),
+      margin: new Animated.Value(-300),
       menu: false,
       settings: false,
       selectedFlux: "Actu",
@@ -31,7 +31,7 @@ export default class Main extends Component {
     Animated.timing(
       this.state.margin,
       {
-        toValue: this.state.menu?-200:0,
+        toValue: this.state.menu?-300:0,
         duration: 200
       }
     ).start();
@@ -70,10 +70,10 @@ export default class Main extends Component {
         <Flux flux={this.getOrderedFlux()} selectedFlux={this.state.selectedFlux} />
         {this.state.settings && <Settings />}
         <View style={styles.menuScreen}>
-          <Animated.View style={[styles.menu, {marginLeft: this.state.margin}]} elevation={4}>
+          <Animated.View style={[styles.menu, {marginLeft: this.state.margin}]} >
             <Menu openSettings={this.toggleSettings.bind(this)} topics={this.getTopics()} selectTopic={this.selectFlux.bind(this)} />
           </Animated.View>
-          <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} elevation={this.state.menu?4:0} />
+          {this.state.menu && <View style={{flex: 1, backgroundColor: '#000000', opacity: 0.5}} />}
         </View>
       </View>
     );
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   menu: {
-    width: 200,
+    width: 300,
     backgroundColor: colors.main_2
   }
 });
